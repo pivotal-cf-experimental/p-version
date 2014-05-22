@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+require 'p_version/binaries_yaml.rb'
+
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  executable_name = File.basename(__FILE__)
+  opts.banner = <<BANNER
+#{executable_name}: Bumps the alpha version of a pivotal product
+
+Usage: #{executable_name} [options]
+BANNER
+
+  opts.on('--binaries-yaml PATH', 'The binaries metadata_part YAML file path') do |binaries_yaml|
+    options[:binaries_yaml] = binaries_yaml
+  end
+end.parse!
+
+binaries_yaml_path = options.fetch(:binaries_yaml)
+
+binary_description = PVersion::BinariesYaml.build(binaries_yaml_path)
+puts "incrementing version from #{binary_description.old_version} to #{binary_description.new_version}"
