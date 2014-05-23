@@ -1,0 +1,28 @@
+---
+stemcell:
+  name: bosh-vsphere-esxi-ubuntu
+  version: '2366'
+  file: bosh-stemcell-2366-vsphere-esxi-ubuntu.tgz
+  md5: 0fbdcd100f716d127f821b1b4335135a
+releases:
+- file: cf-171.tgz
+  name: cf
+  version: '171'
+  md5: f666dc35460809a6eaed178253de447c
+  url: https://releng-artifacts.s3.amazonaws.com/cf-171.tgz
+- file: push-console-release-23.tgz
+  name: push-console-release
+  version: '23'
+  md5: 018701bf0144fbde70ad68800f41e033
+  url: https://releng-artifacts.s3.amazonaws.com/push-console-release-23.tgz
+- file: runtime-verification-errands-3.tgz
+  name: runtime-verification-errands
+  version: '3'
+  md5: 342cf0e591bc1157b3dd76db403c5257
+  url: https://releng-artifacts.s3.amazonaws.com/runtime-verification-errands-3.tgz
+name: example-product
+product_version: 1.2.3.4.alpha.33
+metadata_version: '1.2'
+provides_product_versions:
+  - name: example-product
+    version: 1.2.3.4.alpha.33

@@ -32,13 +32,9 @@ Then I need to be able to pass the relevant information into the command line
 
   Scenario: Helpful output upon successful .pivotal and materials creation
     Then the output should match /incrementing version from 1.2.3.4-alpha32 to 1.2.3.4-alpha33/
-#    And a file named "metadata_parts/binaries.yml" should exist
-#    And a file named "example-product-1.1.0.0-rc123.pivotal.yml" should exist
-#    And a file named "example-product-1.1.0.0-rc123.pivotal.md5" should exist
-#
-#  Scenario: Checking that the zip file contains the release
-#    When I run `unzip -l example-product-1.1.0.0-rc123.pivotal`
-#    Then the output should match /cf-158.1-dev.tgz/
-#    And the output should match /a_stemcell.tgz/
-#    And the output should match /example_migrations.yml/
-#    And the output should match /example_metadata.yml/
+    And a file named "metadata_parts/binaries.yml" should exist
+
+  Scenario: Checking that the binaries.yml is updated
+    When I run `grep -A2 product_version metadata_parts/binaries.yml`
+    Then the output should match /product_version: 1.2.3.4-alpha33/
+    Then the output should match /- name: example-product\s+version: 1.2.3.4-alpha33/

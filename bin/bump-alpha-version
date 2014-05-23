@@ -19,5 +19,7 @@ end.parse!
 
 binaries_yaml_path = options.fetch(:binaries_yaml)
 
-binary_description = PVersion::BinariesYaml.build(binaries_yaml_path)
-puts "incrementing version from #{binary_description.old_version} to #{binary_description.new_version}"
+binaries_yaml = PVersion::BinariesYaml.build(binaries_yaml_path)
+puts "incrementing version from #{binaries_yaml.old_version} to #{binaries_yaml.new_version}"
+
+binaries_yaml.bump_version_and_save
