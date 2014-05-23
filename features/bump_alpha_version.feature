@@ -25,7 +25,7 @@ Then I need to be able to pass the relevant information into the command line
       md5: d41d8cd98f00b204e9800998ecf8427e
     """
 
-    When I run `bump-alpha-version --binaries-yaml='metadata_parts/binaries.yml'`
+    When I run `bump_alpha_version --binaries-yaml='metadata_parts/binaries.yml'`
 
   Scenario: Exit status
     Then the exit status should be 0

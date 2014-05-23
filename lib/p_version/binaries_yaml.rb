@@ -2,10 +2,9 @@ require 'yaml'
 
 module PVersion
   class BinariesYaml
-
     def self.build(binaries_yaml_path)
       binaries_yaml = YAML.load_file(binaries_yaml_path)
-      self.new(binaries_yaml, binaries_yaml_path)
+      new(binaries_yaml, binaries_yaml_path)
     end
 
     def initialize(binaries_hash, binaries_yaml_path)
@@ -20,13 +19,12 @@ module PVersion
     def new_version
       number = old_version.match(/([0-9]+)$/)[-1]
       next_number = number.to_i + 1
-      old_version.gsub(/[0-9]+$/,next_number.to_s)
+      old_version.gsub(/[0-9]+$/, next_number.to_s)
     end
 
     def bump_version_and_save
       save(hash_with_bumped_version.to_yaml)
     end
-
 
     private
 
@@ -49,6 +47,5 @@ module PVersion
     def product_name
       binaries_hash.fetch('name')
     end
-
   end
 end

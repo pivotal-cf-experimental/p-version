@@ -1,5 +1,6 @@
-require 'p_version/binaries_yaml'
 require 'spec_helper'
+require 'p_version/binaries_yaml'
+require 'tmpdir'
 
 describe PVersion::BinariesYaml do
   let(:root_path) { Dir.mktmpdir }
@@ -63,10 +64,10 @@ describe PVersion::BinariesYaml do
   describe '#bump_version_and_save' do
     subject(:binaries_yaml) { PVersion::BinariesYaml.build(binaries_yaml_file_path) }
 
-      it 'writes out an updated YAML with the bumped version number' do
-        binaries_yaml.bump_version_and_save
-        expect(YAML.load_file(binaries_yaml_file_path)).to eq(YAML.load_file(binaries_yaml_file_path_bumped))
-      end
+    it 'writes out an updated YAML with the bumped version number' do
+      binaries_yaml.bump_version_and_save
+      expect(YAML.load_file(binaries_yaml_file_path)).to eq(YAML.load_file(binaries_yaml_file_path_bumped))
+    end
 
   end
 end
