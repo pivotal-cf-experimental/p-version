@@ -12,14 +12,14 @@ OptionParser.new do |opts|
 Usage: #{executable_name} [options]
 BANNER
 
-  opts.on('--binaries-yaml PATH', 'The binaries metadata_part YAML file path') do |binaries_yaml|
-    options[:binaries_yaml] = binaries_yaml
+  opts.on('--product-dir PATH', 'The path to the root of the product directory') do |product_dir|
+    options[:product_dir] = product_dir
   end
 end.parse!
 
-binaries_yaml_path = options.fetch(:binaries_yaml)
+product_dir = options.fetch(:product_dir)
 
-binaries_yaml = PVersion::BinariesYaml.build(binaries_yaml_path)
+binaries_yaml = PVersion::BinariesYaml.build(product_dir)
 puts "incrementing version from #{binaries_yaml.old_version} to #{binaries_yaml.new_version}"
 
 binaries_yaml.bump_version_and_save

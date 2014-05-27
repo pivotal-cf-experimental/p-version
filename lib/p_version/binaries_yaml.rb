@@ -2,7 +2,8 @@ require 'yaml'
 
 module PVersion
   class BinariesYaml
-    def self.build(binaries_yaml_path)
+    def self.build(root_path)
+      binaries_yaml_path = File.expand_path(File.join(root_path, 'metadata_parts', 'binaries.yml'))
       binaries_yaml = YAML.load_file(binaries_yaml_path)
       new(binaries_yaml, binaries_yaml_path)
     end

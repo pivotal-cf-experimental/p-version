@@ -14,7 +14,7 @@ describe PVersion::BinariesYaml do
   let(:binaries_yaml_file_path_bumped) { File.join(root_path, 'metadata_parts', 'bumped_binaries.yml') }
 
   describe '.build' do
-    let(:binaries_yaml) { PVersion::BinariesYaml.build(File.join(root_path, 'metadata_parts', 'binaries.yml')) }
+    let(:binaries_yaml) { PVersion::BinariesYaml.build(root_path) }
     it 'initializes a BinariesYaml object using a file' do
       expect(binaries_yaml.old_version).to eq('1.2.3.4.alpha.32')
     end
@@ -62,7 +62,7 @@ describe PVersion::BinariesYaml do
   end
 
   describe '#bump_version_and_save' do
-    subject(:binaries_yaml) { PVersion::BinariesYaml.build(binaries_yaml_file_path) }
+    subject(:binaries_yaml) { PVersion::BinariesYaml.build(root_path) }
 
     it 'writes out an updated YAML with the bumped version number' do
       binaries_yaml.bump_version_and_save
