@@ -3,7 +3,10 @@ require 'yaml'
 module PVersion
   class MigrationsYaml
     def self.build(root_path)
-      migrations_yaml_path = File.expand_path(File.join(root_path, 'content_migrations', 'migration.yml'))
+      migration_file_paths = Dir.glob(File.expand_path(File.join(root_path, 'content_migrations', '*.yml')))
+      fail "I can't figure out which content_migrations YAML file to use!" unless migration_file_paths.size == 1
+
+      migrations_yaml_path = migration_file_paths.first
       migrations_yaml = YAML.load_file(migrations_yaml_path)
       new(migrations_yaml, migrations_yaml_path)
     end

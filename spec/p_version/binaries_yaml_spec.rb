@@ -11,7 +11,7 @@ describe PVersion::BinariesYaml do
   end
 
   let(:binaries_yaml_file_path) { File.join(root_path, 'metadata_parts', 'binaries.yml') }
-  let(:binaries_yaml_file_path_bumped) { File.join(root_path, 'metadata_parts', 'bumped_binaries.yml') }
+  let(:binaries_yaml_file_path_bumped) { File.join(root_path, 'bumped', 'binaries.yml') }
 
   describe '.build' do
     let(:binaries_yaml) { PVersion::BinariesYaml.build(root_path) }
@@ -68,6 +68,5 @@ describe PVersion::BinariesYaml do
       binaries_yaml.bump_version_and_save
       expect(YAML.load_file(binaries_yaml_file_path)).to eq(YAML.load_file(binaries_yaml_file_path_bumped))
     end
-
   end
 end
