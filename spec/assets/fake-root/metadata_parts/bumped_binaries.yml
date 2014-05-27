@@ -16,8 +16,8 @@ releases:
   md5: 342cf0e591bc1157b3dd76db403c5257
   url: https://example.com/runtime-verification-errands-3.tgz
 name: example-product
-product_version: 1.2.3.4.alpha.33
+product_version: 1.2.3.4-alpha33
 metadata_version: '1.2'
 provides_product_versions:
   - name: example-product
-    version: 1.2.3.4.alpha.33
+    version: 1.2.3.4-alpha33

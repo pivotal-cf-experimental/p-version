@@ -16,7 +16,7 @@ describe PVersion::BinariesYaml do
   describe '.build' do
     let(:binaries_yaml) { PVersion::BinariesYaml.build(root_path) }
     it 'initializes a BinariesYaml object using a file' do
-      expect(binaries_yaml.old_version).to eq('1.2.3.4.alpha.32')
+      expect(binaries_yaml.old_version).to eq('1.2.3.4-alpha32')
     end
   end
 
@@ -29,7 +29,7 @@ describe PVersion::BinariesYaml do
       'provides_product_versions' => [
         {
           'name'    => 'example-product',
-          'version' => '1.2.3.4.alpha.32'
+          'version' => '1.2.3.4-alpha32'
         }
       ]
     }
