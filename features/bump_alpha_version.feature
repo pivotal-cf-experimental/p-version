@@ -24,6 +24,19 @@ Then I need to be able to pass the relevant information into the command line
       version: '158.1-dev'
       md5: d41d8cd98f00b204e9800998ecf8427e
     """
+    And a file named "content_migrations/migration.yml" with:
+    """
+    ---
+    product: cf
+    installation_version: "1.1"
+    to_version: "1.2.3.4-alpha32"
+    migrations:
+      - from_version: 1.0.0.1
+        rules:
+          - type: update
+            selector: "product_version"
+            to: "1.2.3.4-alpha32"
+    """
 
     When I run `bump_alpha_version --product-dir=.`
 
@@ -38,3 +51,8 @@ Then I need to be able to pass the relevant information into the command line
     When I run `grep -A2 product_version metadata_parts/binaries.yml`
     Then the output should match /product_version: 1.2.3.4-alpha33/
     Then the output should match /- name: example-product\s+version: 1.2.3.4-alpha33/
+
+  Scenario: Checking that content_migrations .yml is updated
+    When I run `grep 1.2.3.4-alpha33 content_migrations/migration.yml`
+    Then the output should match /to_version: 1.2.3.4-alpha33/
+    And the output should match /to: 1.2.3.4-alpha33/

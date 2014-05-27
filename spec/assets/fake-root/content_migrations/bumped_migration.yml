@@ -1,0 +1,10 @@
+---
+product: cf
+installation_version: "1.1"
+to_version: "1.2.3.4-alpha33"
+migrations:
+  - from_version: 1.1.0.0
+    rules:
+      - type: update
+        selector: "product_version"
+        to: "1.2.3.4-alpha33"

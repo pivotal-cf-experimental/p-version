@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-require 'p_version/binaries_yaml.rb'
+require 'p_version/binaries_yaml'
+require 'p_version/migrations_yaml'
 
 require 'optparse'
 
@@ -20,6 +21,8 @@ end.parse!
 product_dir = options.fetch(:product_dir)
 
 binaries_yaml = PVersion::BinariesYaml.build(product_dir)
+migrations_yaml = PVersion::MigrationsYaml.build(product_dir)
 puts "incrementing version from #{binaries_yaml.old_version} to #{binaries_yaml.new_version}"
 
 binaries_yaml.bump_version_and_save
+migrations_yaml.bump_version_and_save
